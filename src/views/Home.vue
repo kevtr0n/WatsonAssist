@@ -1,18 +1,50 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="container">
+
+    <div id="mainbox">
+      <div class="bx--tile card">
+        Some Stuff
+      </div>
+
+      <div class="bx--tile card">
+        More Stuff
+      </div>
+    </div>
+
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-export default Vue.extend({
+<script>
+export default {
   name: 'home',
-  components: {
-    HelloWorld,
-  },
-});
+  data() {
+    return {
+      
+    }
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+@import url("../../node_modules/carbon-components/css/carbon-components.min.css");
+#container {
+  align-self: center;
+  .my-tile {
+    align-self: center;
+  }
+}
+
+.card {
+  width: 35%;
+  min-height: 250px;
+  margin: 10px;
+}
+
+#mainbox{
+  box-sizing: border-box;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+</style>
