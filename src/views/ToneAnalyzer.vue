@@ -7,20 +7,19 @@
           <p>Enter Text To Be Analyzed</p>
         </div>
         <div id="div--textarea">
-          <textarea class="input" v-model="message" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
+          <textarea class="input box" v-model="message" v-on:click="analyze(message)" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
         </div>
         <div id="div--button">
           <button class="button-effect" v-on:click="analyze(message)"><span>Submit</span></button>
         </div>
       </div>
 
-      <div class="bx--tile card results" id="div--analysis-form">
+      <div class="bx--tile card card" id="div--analysis-form">
         <div id="div--label">
-          <router-link to="/tone-analyzer/document">Document</router-link> | 
-          <router-link to="/tone-analyzer/sentence">Sentence</router-link>
+          <p>Stuff</p>
         </div>
         <div id="div--results">
-          <router-view/>
+          <p>{{ analyzedMessage }}</p>
         </div>
       </div>
     </div>
@@ -39,7 +38,10 @@ export default {
     }
   },
   methods: {
-    analyze: function(message) {
+    /**
+     * 
+     */
+    analyze: function(input) {
       require('dotenv').config();
       const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
       const toneAnalyzer = new ToneAnalyzerV3({
@@ -47,9 +49,11 @@ export default {
         url: process.env.TONE_ANALYZER_API_URL,
         iam_apikey: process.env.TONE_ANALYZER_API_KEY
       });
-
-
+      /* Write rest of method */
     }
+  },
+  computed: {
+
   }
 }
 </script>
@@ -69,7 +73,7 @@ export default {
   padding: 10px;
   
   .card {
-    width: 25%;
+    width: 55%;
     min-height: 250px;
     margin: 10px;
     background: #fff;
@@ -101,10 +105,11 @@ export default {
 
   #div--textarea {
     padding-bottom: 15px;
-    textarea {
+    .box {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
       border: 1px solid #42b983;
-      box-shadow: 0 0 1px rgb(204, 201, 201);
+      box-shadow: 0 1px 2px rgb(204, 201, 201);
+      transition: all 0.3s ease-in-out;
       font-size: 10pt;
       width: 100%;
       max-width: 100%;
@@ -112,12 +117,27 @@ export default {
       min-height: 200px;
     }
 
-    textarea:focus {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    .box:hover {
+      -webkit-transform: scale(1.015,1.015);
+      transform: scale(1.015, 1.015);
       outline: none !important;
       border: 1px solid #42b983;
       box-shadow: 0 0 30px #719ECE;
     }
+
+    .box:hover::after {
+      opacity: 1;
+    }
+
+    .box:focus {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      outline: none !important;
+      border: 1px solid #42b983;
+      box-shadow: 0 0 30px #719ECE;
+      -webkit-transform: scale(1.015,1.015);
+      transform: scale(1.015, 1.015);
+    }
+
   }
   
   #div--button {
@@ -125,6 +145,7 @@ export default {
     display: flex;
     border: 2px #719ECE;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.103);
+    transition: all 0.3s ease-in-out;
 
     .button-effect {
       border-radius: 2px;
@@ -135,12 +156,10 @@ export default {
       font-size: 11pt;
       padding: 15px;
       width: 100%;
-      transition: all 0.5s;
 
       span {
         display: inline-block;
         position: relative;
-        transition: 0.5s;
       }
 
       span:after {
@@ -149,7 +168,6 @@ export default {
         opacity: 0;
         top: 0;
         right: -20px;
-        transition: 0.5s;
       }
     }
 
@@ -166,7 +184,7 @@ export default {
 
   #div--button:hover {
     box-shadow: 0 0 15px #719ECE;
-    transition: all 0.5s;
+    transform: scale(1.015, 1.015);
   }
 }
 

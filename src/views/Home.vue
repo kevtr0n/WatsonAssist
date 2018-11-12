@@ -3,7 +3,7 @@
 
     <div id="mainbox">
       <div class="bx--tile card">
-        Some Stuff
+        {{ $store.state.isAnalytical }}
       </div>
 
       <div class="bx--tile card">
