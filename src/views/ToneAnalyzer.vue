@@ -73,7 +73,7 @@ export default {
   padding: 10px;
   
   .card {
-    width: 55%;
+    width: 65%;
     min-height: 250px;
     margin: 10px;
     background: #fff;
@@ -156,10 +156,12 @@ export default {
       font-size: 11pt;
       padding: 15px;
       width: 100%;
+      transition: all 0.3s ease-in-out;
 
       span {
         display: inline-block;
         position: relative;
+        transition: all 0.3s ease-in-out;
       }
 
       span:after {
@@ -168,6 +170,7 @@ export default {
         opacity: 0;
         top: 0;
         right: -20px;
+        transition: all 0.3s ease-in-out;
       }
     }
 
@@ -185,6 +188,7 @@ export default {
   #div--button:hover {
     box-shadow: 0 0 15px #719ECE;
     transform: scale(1.015, 1.015);
+    transition: all 0.3s ease-in-out;
   }
 }
 
