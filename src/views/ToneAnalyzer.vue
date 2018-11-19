@@ -1,25 +1,25 @@
 <template>
-  <div id="container">
+  <div id="div--container">
     <div id="div--mainbox">
       
-      <div class="bx--tile card" id="div--analysis-form">
+      <div class="card" id="div--analysis-form">
         <div id="div--label">
           <p>Enter Text To Be Analyzed</p>
         </div>
         <div id="div--textarea">
-          <textarea class="input box" v-model="message" v-on:click="analyze(message)" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
+          <textarea class="input box" v-model="message" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
         </div>
         <div id="div--button">
-          <button class="button-effect" v-on:click="analyze(message)"><span>Submit</span></button>
+          <button class="btn btn-primary" @click="analyze(message)"><span>Submit</span></button>
         </div>
       </div>
 
-      <div class="bx--tile card card" id="div--analysis-form">
+      <div class="card" id="div--analysis-form">
         <div id="div--label">
           <p>Stuff</p>
         </div>
         <div id="div--results">
-          <p>{{ analyzedMessage }}</p>
+          <p>{{ getMessage }}</p>
         </div>
       </div>
     </div>
@@ -28,42 +28,59 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapActions } from 'vuex';
+var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+
 export default {
+
   name: 'WatsonAssist',
+  methods: {
+
+    ...mapActions([
+      'setMessage',
+    ]),
+
+    ...mapMutations([
+      'setMessage'
+    ]),
+
+    analyze(message) {
+      this.$store.dispatch('analyzer', message);
+    }
+  },
+
+  computed: {
+    ...mapGetters([
+      'getIsAnalytical',
+      'getIsConfident',
+      'getIsTentative',
+      'getIsSadness',
+      'getIsAnger',
+      'getIsFear',
+      'getIsJoy',
+      'getAnalytical',
+      'getConfident',
+      'getTentative',
+      'getSadness',
+      'getAnger',
+      'getFear',
+      'getJoy',
+      'getMessage'
+    ])
+  },
+
   data() {
     return {
-      ibm_watson_logo_simple: 'https://www.betterbuys.com/wp-content/uploads/2016/02/Watson-Analytics.png',
-      ibm_watson_logo: 'https://banner2.kisspng.com/20180526/ljo/kisspng-ibm-watson-iot-tower-ibm-watson-iot-tower-analytic-5b09398685b890.5013696415273312065477.jpg',
-      toneAnalysis: "Results would go here"
+      ibm_watson_logo_simple: "https://www.betterbuys.com/wp-content/uploads/2016/02/Watson-Analytics.png",
+      ibm_watson_logo:        "https://banner2.kisspng.com/20180526/ljo/kisspng-ibm-watson-iot-tower-ibm-watson-iot-tower-analytic-5b09398685b890.5013696415273312065477.jpg",
     }
   },
-  methods: {
-    /**
-     * 
-     */
-    analyze: function(input) {
-      require('dotenv').config();
-      const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-      const toneAnalyzer = new ToneAnalyzerV3({
-        version: process.env.TONE_ANALYZER_VERSION_DATE,
-        url: process.env.TONE_ANALYZER_API_URL,
-        iam_apikey: process.env.TONE_ANALYZER_API_KEY
-      });
-      /* Write rest of method */
-    }
-  },
-  computed: {
-
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import url("../../node_modules/carbon-components/css/carbon-components.min.css");
-
-#container {
-  align-self: center;
-}
+@import url("../style/style.scss");
 
 #div--mainbox{
   box-sizing: border-box;
@@ -71,22 +88,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  
-  .card {
-    width: 65%;
-    min-height: 250px;
-    margin: 10px;
-    background: #fff;
-  }
-
-  .results {
-    width: 50%;
-  }
-
-  .img-png {
-    max-width: 100%;
-    max-height: 100%;
-  }
 }
 
 #div--analysis-form {
@@ -118,8 +119,8 @@ export default {
     }
 
     .box:hover {
-      -webkit-transform: scale(1.015,1.015);
-      transform: scale(1.015, 1.015);
+      -webkit-transform: scale(1.005,1.005);
+      transform: scale(1.005, 1.005);
       outline: none !important;
       border: 1px solid #42b983;
       box-shadow: 0 0 30px #719ECE;
@@ -134,8 +135,8 @@ export default {
       outline: none !important;
       border: 1px solid #42b983;
       box-shadow: 0 0 30px #719ECE;
-      -webkit-transform: scale(1.015,1.015);
-      transform: scale(1.015, 1.015);
+      -webkit-transform: scale(1.005,1.005);
+      transform: scale(1.005, 1.005);
     }
 
   }
@@ -187,7 +188,7 @@ export default {
 
   #div--button:hover {
     box-shadow: 0 0 15px #719ECE;
-    transform: scale(1.015, 1.015);
+    transform: scale(1.005, 1.005);
     transition: all 0.3s ease-in-out;
   }
 }

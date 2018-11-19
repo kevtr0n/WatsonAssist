@@ -1,12 +1,12 @@
 <template>
-  <div id="container">
+  <div id="div--container">
 
-    <div id="mainbox">
-      <div class="bx--tile card">
-        {{ $store.state.isAnalytical }}
+    <div id="div--mainbox">
+      <div class="card hover">
+        {{ $store.getters.getIsAnalytical }}
       </div>
 
-      <div class="bx--tile card">
+      <div class="card hover">
         More Stuff
       </div>
     </div>
@@ -27,24 +27,5 @@ export default {
 
 <style lang="scss" scoped>
 @import url("../../node_modules/carbon-components/css/carbon-components.min.css");
-#container {
-  align-self: center;
-  .my-tile {
-    align-self: center;
-  }
-}
-
-.card {
-  width: 35%;
-  min-height: 250px;
-  margin: 10px;
-}
-
-#mainbox{
-  box-sizing: border-box;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-}
+@import url("../style/style.scss");
 </style>
