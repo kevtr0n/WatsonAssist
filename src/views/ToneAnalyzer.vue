@@ -10,7 +10,7 @@
           <textarea class="input box" v-model="message" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
         </div>
         <div id="div--button">
-          <button class="btn btn-primary" @click="analyze(message)"><span>Submit</span></button>
+          <button class="button-effect" @click="analyze(message)"><span>Submit</span></button>
         </div>
       </div>
 
@@ -34,6 +34,7 @@ var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 export default {
 
   name: 'WatsonAssist',
+
   methods: {
 
     ...mapActions([
@@ -45,7 +46,7 @@ export default {
     ]),
 
     analyze(message) {
-      this.$store.dispatch('analyzer', message);
+      this.$store.dispatch('analyze', message);
     }
   },
 
@@ -68,11 +69,11 @@ export default {
       'getMessage'
     ])
   },
-
   data() {
     return {
       ibm_watson_logo_simple: "https://www.betterbuys.com/wp-content/uploads/2016/02/Watson-Analytics.png",
       ibm_watson_logo:        "https://banner2.kisspng.com/20180526/ljo/kisspng-ibm-watson-iot-tower-ibm-watson-iot-tower-analytic-5b09398685b890.5013696415273312065477.jpg",
+      message:                  ""
     }
   },
 }

@@ -3,7 +3,7 @@
 require("dotenv").config();
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
-  iam_apikey: "14Q2V1O4yXt_eeG_fG3PZwXJp9v38kjGMi4LHBe4JFA3",
+  iam_apikey: "Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn",
   version: "2017-09-21",
   url: "https://gateway.watsonplatform.net/tone-analyzer/api"
 });

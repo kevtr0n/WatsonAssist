@@ -45,7 +45,7 @@ export const store = new Vuex.Store({
     anger:            0.0,
     fear:             0.0,
     joy:              0.0,
-    message:          "test",
+    message:          "",
     result:           ""
   },
 
