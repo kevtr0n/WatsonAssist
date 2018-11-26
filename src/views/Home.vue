@@ -133,6 +133,7 @@ export default {
   .app-goals {
     display: inline;
     text-align: left;
+    overflow: auto;
 
     .goals {
       margin-bottom: 20px;
@@ -148,6 +149,7 @@ export default {
 
   .useful-links {
     margin-top: 5px;
+    overflow: auto;
 
     ul {
 
@@ -183,7 +185,6 @@ export default {
   transition: all 0.3s ease-in-out;
   border-radius: 3px;
   margin: 10px;
-
   justify-content: left;
 }
 
@@ -201,6 +202,8 @@ td {
     padding: 15px;
     font-style: italic;
     min-height: 70%;
+    max-height: 70%;
+    overflow: auto;
   }
 
   .tag {
@@ -209,6 +212,9 @@ td {
     font-weight: bold;
     font-size: 80%;
     padding: 5px;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: auto;
   }
 
   img {
