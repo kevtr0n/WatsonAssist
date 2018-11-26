@@ -4,27 +4,6 @@ require('dotenv').config();
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 Vue.use(Vuex)
 
-function analyzeInput(message) {
-  var toneAnalyzer = ToneAnalyzerV3({
-    url: process.env.TONE_ANALYZER_API_URL,
-    iam_apikey: process.env.TONE_ANALYZER_API_KEY,
-    version: process.env.TONE_ANALYZER_VERSION_DATE
-  });
-
-  var toneParams = {
-    tone_input: { 'text': message },
-    content_type: 'application/json'
-  };
-
-  toneAnalyzer.tone(toneParams, function (error, toneAnalysis) {
-    if (error) {
-      return error;
-    } else {
-      return toneAnalysis;
-    }
-  });
-}
-
 export const store = new Vuex.Store({
 
   /**
@@ -98,25 +77,23 @@ export const store = new Vuex.Store({
    */
   actions: {
     setMessage: (context, payload) => { context.commit('setMessage', payload)},
-    analyze:    (context, payload) => {
-      var toneAnalyzer = new ToneAnalyzerV3({
-        version: '2017-09-21',
-        iam_apikey: 'Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn',
-        url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
-      });
-
-      var toneParams = { 
-        tone_input: payload,
-        content_type: 'application/json'
-      };
-
-      toneAnalyzer.tone(toneParams, function(error, toneAnalysis) {
-        if (error) {
-          context.commit('setMessage', error);
-        } else {
-          context.commit('setMessage', toneAnalysis);
+    analyze:    (context) => {
+      var url = "http://localhost:5000/analyze";
+      var value;
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          "message":context.state.message
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         }
-      })
+      }).then(function(response) {
+        console.log(response);
+      }).then(function(error) {
+        console.log(error);
+      })/*.then(error => )*/
     }
   }
 })

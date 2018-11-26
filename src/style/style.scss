@@ -7,15 +7,6 @@
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
-}
-
-#div--mainbox{
-  box-sizing: border-box;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
 }
 
 #div--analysis-form {
@@ -129,7 +120,7 @@
   transition: all 0.3s ease-in-out;
   border-radius: 3px;
   padding: 10px;
-  margin: 10px;
+  margin-top: 40px;
 }
 
 .hover:hover {

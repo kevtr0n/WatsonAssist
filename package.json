@@ -13,6 +13,7 @@
     "heroku-postbuild": "npm install --only-dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "carbon-components": "^9.48.2",
     "cors": "^2.8.5",
     "cors-server": "^1.0.4",

@@ -13,6 +13,9 @@
 
     </header>
     <router-view/>
+    <div id="footer">
+      <p>{{ footer_message }}</p>
+    </div>
   </div>
 </template>
 
@@ -22,8 +25,10 @@ export default {
   name: 'App',
   data() {
     return {
-      ibm_watson: 'https://marketingland.com/wp-content/ml-loads/2016/06/ibm-watson-black-1920.png',
-      ibm_watson_dark: 'http://www.modafinilsale.com/data/out/740/228118634-ibm-watson-wallpaper.jpg'
+      ibm_watson:       'https://marketingland.com/wp-content/ml-loads/2016/06/ibm-watson-black-1920.png',
+      ibm_watson_dark:  'http://www.modafinilsale.com/data/out/740/228118634-ibm-watson-wallpaper.jpg',
+      footer_message:   'Watson Assist was developed by Kevin Hayden for the Cloud Computing course MSCS 621 ' + 
+                        'at Marist College\'s 2018 spring semester.'
     }
   }
 }
@@ -59,7 +64,7 @@ export default {
   padding: 15px;
   color: #fff;
   float: right;
-  font-size: 80%;
+  font-size: 90%;
   font-weight: 100;
   a {
     margin: 10px;
@@ -93,5 +98,22 @@ header {
   background-size: cover;
   background-position: center;
   height: 40vh;
+  box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.3);
+}
+
+#footer {
+  margin-top: 40px;
+  background-color: #2c3e50;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+
+  p {
+    font-size: 85%;
+    padding-top: 15px;
+    font-style: italic;
+  }
 }
 </style>
