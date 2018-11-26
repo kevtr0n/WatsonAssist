@@ -18,7 +18,6 @@
         <div id="div--label">
           <p>Watson Results</p>
         </div>
-
         
         <div id="div--table">
           <table>
@@ -202,12 +201,11 @@ export default {
   display: flex;
 
   #div--label {
-
     p {
       font-weight: bold;
       text-transform: uppercase;
       font-size: 13pt;
-      padding-bottom: 10px;
+      margin: 12px;
     }
   }  
 
@@ -308,7 +306,7 @@ export default {
       font-weight: bold;
       text-transform: uppercase;
       font-size: 13pt;
-      padding-bottom: 10px;
+      margin: 12px;
     }
   }
 

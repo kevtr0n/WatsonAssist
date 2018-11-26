@@ -109,10 +109,15 @@ export default {
 
   .column {
     float: left;
-    width: 33.33%;
+    width: 30%;
     padding: 20px;
     height: 325px;
   }
+
+  .column-line {
+    float: left;
+    padding: 0;
+}
 
   .row:after {
     content: "";
