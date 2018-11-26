@@ -111,7 +111,7 @@ export default {
     float: left;
     width: 33.33%;
     padding: 20px;
-    height: 300px;
+    height: 325px;
   }
 
   .row:after {
