@@ -4,8 +4,6 @@
 
 ![IBM's Watson](/src/assets/watson_md.png)
 
-___
-
 ## **Tools Used**
 
 * **[Watson's Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer/)**
