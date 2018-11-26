@@ -2,7 +2,7 @@
 
 >> Watson Assist is a state of the art web application uses Watson's linquistics analysis to detect fear, anger, joy, sadness analytical, confident, and tentative tones that may be found in text. This service can be useful for writing a sales pitch or emails that convey a desired tone.
 
-![IBM's Watson]('./src/assets/watson_md.png')
+![IBM's Watson](/src/assets/watson_md.png)
 
 ___
 
