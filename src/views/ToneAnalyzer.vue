@@ -323,9 +323,9 @@ export default {
         background-color: #2c3e50;
         color: #fff;
         transition: all 0.2s ease-in-out;
-        border-left: 20px solid #42b983;
+        border-left: 10px solid #42b983;
         padding: 15px;
-        right: 30px;
+        // right: 30px;
       }
 
       th, td {
