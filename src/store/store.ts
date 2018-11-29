@@ -93,6 +93,7 @@ export const store = new Vuex.Store({
       commit('setIsFear', false);
       commit('setIsTentative', false);
       commit('setIsSadness', false);
+
       commit('setAnalytical', 0.0);
       commit('setAnger', 0.0);
       commit('setConfident', 0.0);
@@ -105,8 +106,8 @@ export const store = new Vuex.Store({
     /**
      * 
      */
-    analyze:    (context) => {
-      var url = "https://watson-assist.herokuapp.com/analyze";
+    analyze: (context) => {
+      var url = "http://localhost:5000/analyze";
       var data = { message: context.state.message };
 
       console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data)}`);
@@ -125,7 +126,7 @@ export const store = new Vuex.Store({
     /**
      * 
      */
-    updateState:  ({ dispatch }, payload) => {
+    updateState: ({ dispatch }, payload) => {
 
       if (payload.hasOwnProperty("document_tone")) {
         console.log(`Action:\tupdateState\nTones:\t${payload.document_tone}`)
@@ -136,7 +137,7 @@ export const store = new Vuex.Store({
     /**
      * 
      */
-    setDocumentTones:   ({ dispatch }, payload) => {
+    setDocumentTones: ({ dispatch }, payload) => {
       console.log(`Action (setDocumentTones): Entry ${payload}`)
       for (let i = 0; i < payload.length; i++) {
           dispatch('setTone', payload[i]);
@@ -146,7 +147,7 @@ export const store = new Vuex.Store({
     /**
      * 
      */
-    setTone:  ({ commit }, payload) => {
+    setTone: ({ commit }, payload) => {
       console.log(`Action (setTone):\n\t${payload.tone_name}: ${payload.score}`)
       switch(payload.tone_name) {
         case "Analytical": { 
