@@ -2,6 +2,7 @@
 
 > Watson Assist is a state of the art web application uses Watson's linquistics analysis to detect fear, anger, joy, sadness analytical, confident, and tentative tones that may be found in text. This service can be useful for writing a sales pitch or emails that convey a desired tone.
 
+
 ![IBM's Watson](/src/assets/watson_md.png)
 
 ## **Tools Used**
@@ -18,28 +19,28 @@ ___
 ### **Project Setup**
 
 ``` bash
-# Uses Node package manager to install dependencies
+# Uses Node package manager to install dependencies:
 npm run install
 ```
 
 ### **Project Development**
 
 ``` bash
-# Compiles and Hot-Reloads for Development
+# Compiles and Hot-Reloads for Development:
 npm run serve
 ```
 
 ### **Project Build**
 
 ``` bash
-# Compiles and minifies for production
+# Compiles and minifies for production:
 npm run build
 ```
 
 ### **Deploy to Heroku**
 
 ``` bash
-# Deploys to Heroku
+# Deploys /dist folder to Heroku:
 npm run deploy
 ```
 

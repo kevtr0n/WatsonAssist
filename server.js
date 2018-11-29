@@ -1,27 +1,58 @@
 const express = require('express');
-const { parse } = require('querystring');
-const path = require('path');
 const serveStatic = require('serve-static');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const bodyParser = require('body-parser');
+const app = express();
 
-let app = express();
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
+var return_data;
+
+/**
+ * 
+ */
 app.get('/api/', (req, res) => {
   res.json(["Hello World!"]);
-})
+});
 
-app.post('/analyze', (request, response) => {
+/**
+ * 
+ */
+app.post('/test', (request, response) => {
 
-  if (!request.body) { return response.sendStatus(400); }
-  var message = request.body.message
-  // console.log(message)
+  if(!request.body) {
+    return response.sendStatus(400);
+  }
 
+  var testReq = request.body.test;
+  var testRes = { "test": testReq };
+  response.send(testRes);
+});
+
+app.get('/data', (request, response) => {
+  response.send(return_data);
+});
+
+/**
+ * 
+ */
+app.post('/analyze', (req, res) => {
+
+  if (!req.body) { 
+    return res.sendStatus(400); 
+  }
+  
+  var message = req.body.message
   var tone_analyzer = new ToneAnalyzerV3({
-    'version': '2017-09-21',
     'iam_apikey': 'Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn',
-    'url': 'https://gateway.watsonplatform.net/tone-analyzer/api'
+    'url': 'https://gateway.watsonplatform.net/tone-analyzer/api',
+    'version': '2017-09-21'
   });
 
   var toneParams = {
@@ -29,18 +60,24 @@ app.post('/analyze', (request, response) => {
     content_type: 'application/json'
   };
 
-  tone_analyzer.tone(toneParams, function (error, toneAnalysis) {
-    if (error) {
-      console.log(error);
-    } else { 
-      response.send(toneAnalysis)
-    }
+  const p = new Promise((resolve, reject) => {
+    tone_analyzer.tone(toneParams, (error, toneAnalysis) => {
+      if (error) {
+        reject(new Error(error));
+      } else {
+        resolve(toneAnalysis);
+      }
+    });
   });
+
+  p
+    .then(result => res.send(result))
+    .catch(error => console.log('Error', error.message));
 })
 
 app.use(serveStatic(__dirname + "/dist"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  console.log('Visit your page at http://localhost:' + port);
+  console.log(`Visit your page at http://localhost:${port}`);
 });

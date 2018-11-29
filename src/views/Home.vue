@@ -104,14 +104,15 @@ export default {
   padding: 0;
 
   .row {
-    margin: 0 50px 0 50px; 
+    margin: 0 70px 0 70px; 
   }
 
   .column {
     float: left;
-    width: 30%;
-    padding: 20px;
+    width: 33.33%;
+    padding: 0px;
     height: 325px;
+    margin: 0;
   }
 
   .column-line {
@@ -126,13 +127,14 @@ export default {
   }
 
   img {
-    height: 95%;
+    height: 100%;
   }
 
   h2 {
     text-align: center;
     font-weight: bold;
-    margin-bottom: 25px;
+    margin: 35px;
+    padding: 0;
   }
 
   .app-goals {
@@ -157,7 +159,7 @@ export default {
     overflow: auto;
 
     ul {
-
+      // display: inline-flex;
       li {
         margin-bottom: 25px;
         

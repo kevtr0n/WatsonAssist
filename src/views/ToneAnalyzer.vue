@@ -110,8 +110,6 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
-var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-
 export default {
 
   name: 'WatsonAssist',
@@ -127,8 +125,8 @@ export default {
     ]),
 
     analyze(message) {
-      this.$store.dispatch('setMessage', message);
-      this.$store.dispatch('analyze', message);
+      this.$store.dispatch('setMessage', message)
+      this.$store.dispatch('analyze');
     }
   },
 
@@ -149,7 +147,7 @@ export default {
       'getFear',
       'getJoy',
       'getMessage',
-      'getResult'
+      // 'getResult'
     ])
   },
   data() {
