@@ -106,7 +106,7 @@ export const store = new Vuex.Store({
      * 
      */
     analyze:    (context) => {
-      var url = "https://waton-assist.herokuapp.com/analyze";
+      var url = "https://watson-assist.herokuapp.com/analyze";
       var data = { message: context.state.message };
 
       console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data)}`);
