@@ -125,6 +125,7 @@ export default {
     ]),
 
     analyze(message) {
+      this.$store.dispatch('clear');
       this.$store.dispatch('setMessage', message)
       this.$store.dispatch('analyze');
     }

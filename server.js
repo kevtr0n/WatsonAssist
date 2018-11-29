@@ -12,33 +12,6 @@ app.use((req, res, next) => {
   next();
 });
 
-var return_data;
-
-/**
- * 
- */
-app.get('/api/', (req, res) => {
-  res.json(["Hello World!"]);
-});
-
-/**
- * 
- */
-app.post('/test', (request, response) => {
-
-  if(!request.body) {
-    return response.sendStatus(400);
-  }
-
-  var testReq = request.body.test;
-  var testRes = { "test": testReq };
-  response.send(testRes);
-});
-
-app.get('/data', (request, response) => {
-  response.send(return_data);
-});
-
 /**
  * 
  */

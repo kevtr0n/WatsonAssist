@@ -85,19 +85,38 @@ export const store = new Vuex.Store({
     /**
      * 
      */
+    clear: ({ commit }) => {
+      commit('setIsAnalytical', false);
+      commit('setIsAnger', false);
+      commit('setIsConfident', false);
+      commit('setIsJoy', false);
+      commit('setIsFear', false);
+      commit('setIsTentative', false);
+      commit('setIsSadness', false);
+      commit('setAnalytical', 0.0);
+      commit('setAnger', 0.0);
+      commit('setConfident', 0.0);
+      commit('setJoy', 0.0);
+      commit('setFear', 0.0);
+      commit('setSadness', 0.0);
+      commit('setTentative', 0.0);
+    },
+
+    /**
+     * 
+     */
     analyze:    (context) => {
-      var url = "http://localhost:5000/analyze";
+      var url = "https://waton-assist.herokuapp.com/analyze";
       var data = { message: context.state.message };
 
-      console.log(`Action (analyze):\n\tEntrance***:\t${data}`);
-
+      console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data)}`);
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' }
       }).then(
         response => response.json(),
-        error => console.log(`Action (analyze):\n\tError***:\t${error}`)
+        error => console.log(`Action:\tanalyze\nError:\t${error}`)
       ).then(
         res => context.dispatch('updateState', res)
       );
@@ -109,6 +128,7 @@ export const store = new Vuex.Store({
     updateState:  ({ dispatch }, payload) => {
 
       if (payload.hasOwnProperty("document_tone")) {
+        console.log(`Action:\tupdateState\nTones:\t${payload.document_tone}`)
         dispatch('setDocumentTones', payload.document_tone.tones);
       }
     },
