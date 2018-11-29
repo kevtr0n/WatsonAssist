@@ -4,6 +4,7 @@
   "engines": {
     "node": "11.1.0"
   },
+  "proxy": "https://watson-assist.herokuapp.com/",
   "private": true,
   "scripts": {
     "start": "node server.js",
