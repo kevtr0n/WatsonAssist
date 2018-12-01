@@ -124,7 +124,7 @@
                 </div>
                 <div class="tone-row" v-else v-for="tone in sentence.tones" :key="tone">
                   <ul>
-                    <li class="tone-name"><strong>{{ tone.tone_name }}:</strong></li>
+                    <li class="tone-name">{{ tone.tone_name }}:</li>
                     <li class="tone-score">{{ tone.score }}</li>
                   </ul>
                 </div>
@@ -384,11 +384,11 @@ export default {
     ul {
       width: 100%;
       .tone-name {
-        width: 40%;
+        width: 25%;
         display: inline-block;
       }
       .tone-score {
-        width: 60%;
+        width: 75%;
         display: inline-block;
       }
     }
