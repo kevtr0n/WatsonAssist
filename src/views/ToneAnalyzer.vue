@@ -16,7 +16,7 @@
 
       <div class="card" id="div--results-form">
         <div id="div--label">
-          <p>Watson Results</p>
+          <p>Document Analysis</p>
         </div>
         
         <div id="div--table">
@@ -28,7 +28,7 @@
               <th class="present">Present</th>
               <th class="score">Score</th>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Analytical</td>
               <td class="definition">{{ analytical_definition }}</td>
               <td class="example shimmer">{{ analytical_example }}</td>
@@ -40,7 +40,7 @@
               </td>
               <td>{{ getAnalytical }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Anger</td>
               <td class="definition">{{ anger_definition }}</td>
               <td class="example shimmer">{{ anger_example }}</td>
@@ -50,7 +50,7 @@
               </td>
               <td>{{ getAnger }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Confident</td>
               <td class="definition">{{ confident_definition }}</td>
               <td class="example shimmer">{{ confident_example }}</td>
@@ -60,7 +60,7 @@
               </td>
               <td>{{ getConfident }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Fear</td>
               <td class="definition">{{ fear_definition }}</td>
               <td class="example shimmer">{{ fear_example }}</td>
@@ -70,7 +70,7 @@
               </td>
               <td>{{ getFear }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Joy</td>
               <td class="definition">{{ joy_definition }}</td>
               <td class="example shimmer">{{ joy_example }}</td>
@@ -80,7 +80,7 @@
               </td>
               <td>{{ getJoy }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Sadness</td>
               <td class="definition">{{ sadness_definition }}</td>
               <td class="example shimmer">{{ sadness_example }}</td>
@@ -90,7 +90,7 @@
               </td>
               <td>{{ getSadness }}</td>
             </tr>
-            <tr class="row">
+            <tr class="document row">
               <td class="tone">Tentative</td>
               <td class="definition">{{ tentative_definition }}</td>
               <td class="example shimmer">{{ tentative_example }}</td>
@@ -99,6 +99,36 @@
                 <img v-else src="../assets/cancel.png">
               </td>
               <td>{{ getTentative }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+  
+      <div class="card" id="div--results-form">
+        <div id="div--label">
+          <p>Sentence Analysis</p>
+        </div>
+        <div id="div--table">
+          <table>
+            <tr>
+              <th class="index">Index</th>
+              <th class="text">Text</th>
+              <th class="tones" colspan="2">Tones</th>
+            </tr>
+            <tr class="document row" v-for="sentence in getSentences" :key="sentence">
+              <td>{{ sentence.sentence_id }}</td>
+              <td class="text shimmer">{{ sentence.text }}</td>
+              <td class="tones">
+                <div class="no-tones" v-if="sentence.tones.length == 0">
+                  <strong>None</strong>
+                </div>
+                <div class="tone-row" v-else v-for="tone in sentence.tones" :key="tone">
+                  <ul>
+                    <li class="tone-name"><strong>{{ tone.tone_name }}:</strong></li>
+                    <li class="tone-score">{{ tone.score }}</li>
+                  </ul>
+                </div>
+              </td>
             </tr>
           </table>
         </div>
@@ -148,7 +178,7 @@ export default {
       'getFear',
       'getJoy',
       'getMessage',
-      // 'getResult'
+      'getSentences'
     ])
   },
   data() {
@@ -324,8 +354,6 @@ export default {
         color: #fff;
         transition: all 0.2s ease-in-out;
         border-left: 10px solid #42b983;
-        padding: 15px;
-        // right: 30px;
       }
 
       th, td {
@@ -353,6 +381,18 @@ export default {
       box-shadow: 0 0 15px #719ECE;
     }
 
+    ul {
+      width: 100%;
+      .tone-name {
+        width: 40%;
+        display: inline-block;
+      }
+      .tone-score {
+        width: 60%;
+        display: inline-block;
+      }
+    }
+
     .tone {
       text-align: left;
       width: 10%;
@@ -374,6 +414,24 @@ export default {
 
     .score {
       width: 10%;
+    }
+
+    .index {
+      width: 10%;
+    }
+
+    .text {
+      text-align: left;
+      width: 40%;
+    }
+
+    .tones {
+      text-align: left;
+      width: 40%;
+    }
+
+    .no-tones {
+      font-style: italic;
     }
 
     .shimmer {

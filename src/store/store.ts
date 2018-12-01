@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 
   /**
-   * 
+   * Vuex state variables.
    */
   state: {
     isAnalytical:     false,
@@ -24,11 +24,12 @@ export const store = new Vuex.Store({
     anger:            0.0,
     fear:             0.0,
     joy:              0.0,
-    message:          ""
+    message:          "",
+    sentences:        [],
   },
 
   /**
-   * 
+   * Getters functions.
    */
   getters: {
     getIsAnalytical:    (state) => { return state.isAnalytical; },
@@ -46,10 +47,11 @@ export const store = new Vuex.Store({
     getFear:            (state) => { return state.fear; },
     getJoy:             (state) => { return state.joy; },
     getMessage:         (state) => { return state.message; },
+    getSentences:       (state) => { return state.sentences; }
   },
 
   /**
-   * 
+   * Syncronous functions.
    */
   mutations: {
     setIsAnalytical:    (state, payload) => { state.isAnalytical = payload; },
@@ -67,23 +69,29 @@ export const store = new Vuex.Store({
     setFear:            (state, payload) => { state.fear = payload; },
     setJoy:             (state, payload) => { state.joy = payload; },
     setMessage:         (state, payload) => { state.message = payload; },
+    setSentences:       (state, payload) => { state.sentences = payload; }
   },
 
   /**
-   * 
+   * Asyncronous functions.
    */
   actions: {
 
     /**
+     * Sets the message state.
      * 
+     * @param context   the current state of the Vuex store.
+     * @param payload   the payload containing the data.
      */
     setMessage: (context, payload) => { 
-      console.log(`Action (setMessage):\n\tmessage:\t${payload}`)
+      console.log(`Action:\tsetMessage\nMessage:\t${payload}`)
       context.commit('setMessage', payload)
     },
 
     /**
+     * Resets the value of each Vuex state.
      * 
+     * @param commit    the commit method to update state.
      */
     clear: ({ commit }) => {
       commit('setIsAnalytical', false);
@@ -101,16 +109,22 @@ export const store = new Vuex.Store({
       commit('setFear', 0.0);
       commit('setSadness', 0.0);
       commit('setTentative', 0.0);
+
+      commit('setSentences', []);
     },
 
     /**
+     * Sends a HTTP POST command to the Watson SDK's URL.
+     * Handles the POST response and dispatches the payload.
      * 
+     * @param context   the current state of the Vuex store.
      */
     analyze: (context) => {
       var url = "https://watson-assist.herokuapp.com/analyze";
+      // var url = "http://localhost:5000/analyze"
       var data = { message: context.state.message };
 
-      console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data)}`);
+      console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data, null, 2)}`);
       return fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -124,28 +138,56 @@ export const store = new Vuex.Store({
     },
 
     /**
+     * Checks response for document and sentence analysis.
+     * If present, triggers state updates.
      * 
+     * @param dispatch  the dispatch method to push changes.
+     * @param payload   the payload containing the data.
      */
     updateState: ({ dispatch }, payload) => {
 
+      // If response contains document tone analysis, update state:
       if (payload.hasOwnProperty("document_tone")) {
-        console.log(`Action:\tupdateState\nTones:\t${payload.document_tone}`)
+        console.log(`Action:\tupdateState\nDocument Tones:\t${JSON.stringify(payload.document_tone, null, 2)}`);
         dispatch('setDocumentTones', payload.document_tone.tones);
+      }
+
+      // If response contains sentence tone analysis, update state:
+      if (payload.hasOwnProperty("sentences_tone")) {
+        console.log(`Action:\tupdateState\nSentence Tones:\t${JSON.stringify(payload.sentences_tone, null, 2)}`);
+        dispatch('setSentenceTones', payload.sentences_tone);
       }
     },
 
     /**
+     * Sets the presence/score state for each tone within the given array.
      * 
+     * @param dispatch  the dispatch method to push changes.
+     * @param payload   the payload containing the data.
      */
     setDocumentTones: ({ dispatch }, payload) => {
-      console.log(`Action (setDocumentTones): Entry ${payload}`)
+      console.log(`Action: setDocumentTones\nTones: ${payload}`);
       for (let i = 0; i < payload.length; i++) {
           dispatch('setTone', payload[i]);
       }
     },
 
     /**
+     * Sets the sentences array state.
      * 
+     * @param commit    the commit method to update state.
+     * @param payload   the payload containing the data.
+     */
+    setSentenceTones: ({ commit }, payload) => {
+      console.log(`Action: setSentenceTones\nTones: ${payload}`);
+      commit('setSentences', payload);
+    },
+
+    /**
+     * Sets the individual presence/score of a given tone.
+     * 
+     * @param commit    the commit method to update state.
+     * @param payload   the payload containing the data.
      */
     setTone: ({ commit }, payload) => {
       console.log(`Action (setTone):\n\t${payload.tone_name}: ${payload.score}`)
