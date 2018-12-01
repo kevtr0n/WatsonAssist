@@ -120,7 +120,7 @@
               <td class="text shimmer">{{ sentence.text }}</td>
               <td class="tones">
                 <div class="no-tones" v-if="sentence.tones.length == 0">
-                  <strong>None</strong>
+                  None
                 </div>
                 <div class="tone-row" v-else v-for="tone in sentence.tones" :key="tone">
                   <ul>
@@ -384,11 +384,11 @@ export default {
     ul {
       width: 100%;
       .tone-name {
-        width: 25%;
+        width: 35%;
         display: inline-block;
       }
       .tone-score {
-        width: 75%;
+        width: 65%;
         display: inline-block;
       }
     }
@@ -422,12 +422,12 @@ export default {
 
     .text {
       text-align: left;
-      width: 40%;
+      width: 60%;
     }
 
     .tones {
       text-align: left;
-      width: 40%;
+      width: 30%;
     }
 
     .no-tones {
