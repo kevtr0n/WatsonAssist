@@ -26,6 +26,7 @@ export const store = new Vuex.Store({
     joy:              0.0,
     message:          "",
     sentences:        [],
+    seen:             false
   },
 
   /**
@@ -47,7 +48,8 @@ export const store = new Vuex.Store({
     getFear:            (state) => { return state.fear; },
     getJoy:             (state) => { return state.joy; },
     getMessage:         (state) => { return state.message; },
-    getSentences:       (state) => { return state.sentences; }
+    getSentences:       (state) => { return state.sentences; },
+    getSeen:            (state) => { return state.seen; }
   },
 
   /**
@@ -69,7 +71,8 @@ export const store = new Vuex.Store({
     setFear:            (state, payload) => { state.fear = payload; },
     setJoy:             (state, payload) => { state.joy = payload; },
     setMessage:         (state, payload) => { state.message = payload; },
-    setSentences:       (state, payload) => { state.sentences = payload; }
+    setSentences:       (state, payload) => { state.sentences = payload; },
+    setSeen:            (state, payload) => { state.seen = payload; }
   },
 
   /**
@@ -111,6 +114,7 @@ export const store = new Vuex.Store({
       commit('setTentative', 0.0);
 
       commit('setSentences', []);
+      commit('setSeen', false);
     },
 
     /**
@@ -138,6 +142,16 @@ export const store = new Vuex.Store({
     },
 
     /**
+     * Sets the boolean variable to the payload value.
+     * 
+     * @param commit    the commit method to update state.
+     * @param payload   the payload containing the data.
+     */
+    setSeen: ({ commit }, payload) => {
+      commit('setSeen', payload);
+    },
+
+    /**
      * Checks response for document and sentence analysis.
      * If present, triggers state updates.
      * 
@@ -156,6 +170,7 @@ export const store = new Vuex.Store({
       if (payload.hasOwnProperty("sentences_tone")) {
         console.log(`Action:\tupdateState\nSentence Tones:\t${JSON.stringify(payload.sentences_tone, null, 2)}`);
         dispatch('setSentenceTones', payload.sentences_tone);
+        dispatch('setSeen', true);
       }
     },
 

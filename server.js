@@ -2,8 +2,8 @@ const express = require('express');
 const serveStatic = require('serve-static');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
 const app = express();
+require('dotenv').load();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,9 +25,12 @@ app.post('/analyze', (req, res) => {
   
   var message = req.body.message
   var tone_analyzer = new ToneAnalyzerV3({
-    'iam_apikey': 'Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn',
-    'url': 'https://gateway.watsonplatform.net/tone-analyzer/api',
-    'version': '2017-09-21'
+    'iam_apikey': process.env.TONE_ANALYZER_API_KEY,
+    'url': process.env.TONE_ANALYZER_API_URL,
+    'version': process.env.TONE_ANALYZER_VERSION_DATE
+    // 'iam_apikey': 'Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn',
+    // 'url': 'https://gateway.watsonplatform.net/tone-analyzer/api',
+    // 'version': '2017-09-21'
   });
 
   var toneParams = {

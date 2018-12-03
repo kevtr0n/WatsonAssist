@@ -2,15 +2,39 @@
   <div id="div--container">
     <div id="div--mainbox">
       
-      <div class="card" width=70% id="div--analysis-form">
+      <div class="tile" id="div--analysis-form">
         <div id="div--label">
           <p>Enter Text To Be Analyzed</p>
         </div>
+
+        <!-- <div id="div--examples">
+          <ul class="radio-list">
+            <li>
+              <input type="radio" id="personal" value="personal" v-model="picked">
+              <label for="personal">Personal</label>
+            </li>
+            <li>
+              <input type="radio" id="email" value="email" v-model="picked">
+              <label for="email">Angry Email</label>
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+          </ul>
+        </div> -->
+
         <div id="div--textarea">
           <textarea class="input box" v-model="message" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
         </div>
+
         <div id="div--button">
-          <button class="button-effect" @click="analyze(message)"><span>Submit</span></button>
+          <button class="button-style" @click="analyze(message)"><span>Submit</span></button>
         </div>
       </div>
 
@@ -104,36 +128,39 @@
         </div>
       </div>
   
-      <div class="card" id="div--results-form">
-        <div id="div--label">
-          <p>Sentence Analysis</p>
+      <template v-if="getSeen">
+        <div class="card" id="div--results-form">
+          <div id="div--label">
+            <p>Sentence Analysis</p>
+          </div>
+          <div id="div--table">
+            <table>
+              <tr>
+                <th class="index">Index</th>
+                <th class="text">Text</th>
+                <th class="tones" colspan="2">Tones</th>
+              </tr>
+              <tr class="document row" v-for="sentence in getSentences" :key="sentence">
+                <td>{{ sentence.sentence_id }}</td>
+                <td class="text shimmer">{{ sentence.text }}</td>
+                <td class="tones">
+                  <div class="no-tones" v-if="sentence.tones.length == 0">
+                    None
+                  </div>
+                  <div class="tone-row" v-else v-for="tone in sentence.tones" :key="tone">
+                    <ul>
+                      <li class="tone-name">{{ tone.tone_name }}:</li>
+                      <li class="tone-score">{{ tone.score }}</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div id="div--table">
-          <table>
-            <tr>
-              <th class="index">Index</th>
-              <th class="text">Text</th>
-              <th class="tones" colspan="2">Tones</th>
-            </tr>
-            <tr class="document row" v-for="sentence in getSentences" :key="sentence">
-              <td>{{ sentence.sentence_id }}</td>
-              <td class="text shimmer">{{ sentence.text }}</td>
-              <td class="tones">
-                <div class="no-tones" v-if="sentence.tones.length == 0">
-                  None
-                </div>
-                <div class="tone-row" v-else v-for="tone in sentence.tones" :key="tone">
-                  <ul>
-                    <li class="tone-name">{{ tone.tone_name }}:</li>
-                    <li class="tone-score">{{ tone.score }}</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
+      </template>
     </div>
+
 
   </div>
 </template>
@@ -158,6 +185,7 @@ export default {
       this.$store.dispatch('clear');
       this.$store.dispatch('setMessage', message)
       this.$store.dispatch('analyze');
+      console.log(this.$store.state.sentences);
     }
   },
 
@@ -178,7 +206,8 @@ export default {
       'getFear',
       'getJoy',
       'getMessage',
-      'getSentences'
+      'getSentences',
+      'getSeen'
     ])
   },
   data() {
@@ -205,7 +234,7 @@ export default {
       sadness_definition:     "The condition or quality of being sad.",
       sadness_example:        "A source of great sadness; it is one of life's sadnesses.",
 
-      tentative_definition:   "Not certain or fixed; provisional; done without confidence; hesitant.",
+      tentative_definition:   "A person's degree of inhibition; not certain or fixed; provisional; done without confidence; hesitant.",
       tentative_example:      "A tentative conclusion; he eventually tried a few tentative steps round his hospital room"
     }
   },
@@ -221,8 +250,26 @@ export default {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  // padding: 10px;
 }
+
+// #div--examples {
+//   .radio-list {
+//     margin: 15px;
+
+//     .list-id {
+//       font-weight: bold;
+//     }
+
+//     li {
+//       display: inline;
+//       padding: 30px;
+//     }
+
+//     input {
+
+//     }
+//   }
+// }
 
 #div--analysis-form {
   justify-content: space-between;
@@ -243,12 +290,13 @@ export default {
     .box {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
       border: 1px solid #42b983;
+      border-radius: 3px;
       box-shadow: 0 1px 2px rgb(204, 201, 201);
       transition: all 0.3s ease-in-out;
       font-size: 11pt;
-      width: 100%;
-      max-width: 100%;
-      min-width: 100%;
+      width: 70%;
+      max-width: 70%;
+      min-width: 70%;
       min-height: 200px;
     }
 
@@ -274,19 +322,21 @@ export default {
     }
 
   }
-  
-  #div--button {
-    justify-content: flex-end;
-    display: flex;
-    border: 2px #719ECE;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.103);
-    transition: all 0.3s ease-in-out;
 
-    .button-effect {
+  #div--button {
+    width: 70%;
+    align-self: center;
+    margin-bottom: 15px;
+    border: 1px solid #42b983;
+    box-shadow: 0 1px 2px rgb(204, 201, 201);
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+
+    .button-style {
       border-radius: 2px;
       background-color: #42b983;
-      border: 1px;
       color: #fff;
+      border: 1px;
       font-weight: 400;
       font-size: 11pt;
       padding: 15px;
@@ -304,31 +354,29 @@ export default {
         position: absolute;
         opacity: 0;
         top: 0;
-        right: -20px;
-        transition: all 0.3s ease-in-out;
       }
     }
 
-    .button-effect:hover {
+    .button-style:hover {
       span {
-        padding-right: 25px;
+        padding-right: 20px;
       }
       span:after {
         opacity: 1;
-        right: 0;
+        right: 0; 
       }
     }
   }
 
   #div--button:hover {
     box-shadow: 0 0 15px #719ECE;
-    transform: scale(1.005, 1.005);
-    transition: all 0.3s ease-in-out;
   }
 }
 
 #div--results-form {
-  margin-bottom: 40px;
+
+  margin: 10px;
+  
   #div--label {
 
     p {

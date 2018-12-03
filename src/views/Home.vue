@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       // Information:
-      app_goals:        "Watson Assist is a state of the art web application uses Watson's linquistics analysis " +
+      app_goals:        "Watson Assist is a state of the art web application uses Watson's linguistics analysis " +
                         "to detect fear, anger, joy, sadness, analytical, confident, and tentative tones that " +
                         "may be found in text. This service can be useful for writing a sales pitch or emails " +
                         "that convey a desired tone.",
