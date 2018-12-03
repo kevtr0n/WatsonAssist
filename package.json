@@ -10,7 +10,7 @@
     "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "git push heroku master",
+    "deploy": "npm run build; git add .; git commit -am 'NPM deploy'; git push heroku master",
     "heroku-postbuild": "npm install --only-dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
