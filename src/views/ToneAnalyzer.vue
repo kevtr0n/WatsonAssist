@@ -138,7 +138,7 @@
               <tr>
                 <th class="index">Index</th>
                 <th class="text">Text</th>
-                <th class="tones" colspan="2">Tones</th>
+                <th class="tones">Tones</th>
               </tr>
               <tr class="document row" v-for="sentence in getSentences" :key="sentence">
                 <td>{{ sentence.sentence_id }}</td>
@@ -252,25 +252,6 @@ export default {
   flex-wrap: wrap;
 }
 
-// #div--examples {
-//   .radio-list {
-//     margin: 15px;
-
-//     .list-id {
-//       font-weight: bold;
-//     }
-
-//     li {
-//       display: inline;
-//       padding: 30px;
-//     }
-
-//     input {
-
-//     }
-//   }
-// }
-
 #div--analysis-form {
   justify-content: space-between;
   flex-direction: column;
@@ -376,7 +357,7 @@ export default {
 #div--results-form {
 
   margin: 10px;
-  
+
   #div--label {
 
     p {
