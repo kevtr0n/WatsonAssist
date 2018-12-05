@@ -419,11 +419,11 @@ export default {
     ul {
       width: 100%;
       .tone-name {
-        width: 35%;
+        width: 45%;
         display: inline-block;
       }
       .tone-score {
-        width: 65%;
+        width: 55%;
         display: inline-block;
       }
     }
