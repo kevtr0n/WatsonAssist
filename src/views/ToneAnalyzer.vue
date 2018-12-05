@@ -291,7 +291,6 @@ export default {
       -webkit-transform: scale(1.005,1.005);
       transform: scale(1.005, 1.005);
     }
-
   }
 
   #div--loading {
@@ -477,5 +476,4 @@ export default {
     }
   }
 }
-
 </style>
