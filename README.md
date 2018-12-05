@@ -33,7 +33,9 @@ ___
 
 ## **Install Dependencies**
 
-**Install Node and NPM**
+___
+
+### Install Node and NPM
 
 ``` bash
 # Install Node and NPM via Homebrew:
@@ -44,9 +46,9 @@ node -v
 
 # Check to see if NPM installed properly:
 npm -v
-````
+```
 
-**Install IBM Cloud CLI**
+### Install IBM Cloud CLI
 
 ``` bash
 # Install via shell:
@@ -56,7 +58,7 @@ curl -fsSL https://clis.ng.bluemix.net/install/osx | sh
 ibmcloud --version
 ```
 
-**Install Heroku CLI**
+### Install Heroku CLI
 
 ``` bash
 # Install via Homebrew:
@@ -66,7 +68,7 @@ brew install heroku/brew/heroku
 heroku --version
 ```
 
-**Install Vue JS and Vue CLI**
+### Install Vue JS and Vue CLI
 
 ``` bash
 # Install via npm:
@@ -76,17 +78,20 @@ npm install -g vue
 vue --version
 ```
 
-**Install Docker**
+### Install Docker
 
 ``` bash
 # Install using brew cask
 brew cask install docker
+
+# Check to see if Docker installed properly:
+docker -v
+docker-compose -v
 ```
 
 (Or alternatively you can install from **[here](https://store.docker.com/editions/community/docker-ce-desktop-mac)**.)
 
 ___
-
 
 ## Commission a Watson Tone Analyzer Web Service from IBM Cloud
 
@@ -101,14 +106,12 @@ ___
 
 > This repository contains all the code needed to run this application. With the exception of one file which you will create below.
 
-**Clone the repository:**
-
 ``` bash
 # Clone the repo via git:
 git clone https://github.com/kevtr0n/WatsonAssist.git
 ```
 
-**Create a ```.env``` file in the project root:**
+## Create a ```.env``` file in the project root:
 
 ``` bash
 # Change into the project directory:
@@ -118,7 +121,7 @@ cd WatsonAssist
 touch .env
 ```
 
-**Inside the ```.env``` file, do the following:**
+## Inside the ```.env``` file, do the following:
 
 ``` bash
 # Create the following variables:
@@ -170,9 +173,9 @@ TONE_ANALYZER_VERSION_DATE=2017-09-21
 
 ![Config Vars](./src/assets/vars.png)
 
-**Time to deploy!**
-
 > Be sure that **line 127** of ```WatsonAssist/src/store/store.ts``` is uncommented and **line 128** is commented out for production.
+
+### Deploy
 
 ``` bash
 # Login to Heroku:
@@ -182,12 +185,33 @@ heroku login
 git init
 heroku git:remote -a YOUR_HEROKU_PROJECT_NAME
 
-# Deploy your application:
+# Build dist/
 npm run build
+
+# Push to Heroku:
 git add .
-git commit -am "Initial commit."
+git commit -m "Heroku deploy."
 git push heroku master
 
-# Or use NPM script:
+# Optionally use NPM Script:
 npm run deploy
+```
+
+___
+
+### Deploy (via Docker Image)
+
+``` bash
+# Login to Heroku:
+heroku login
+
+# Initialize .git in project root:
+git init
+heroku git:remote -a YOUR_HEROKU_PROJECT_NAME
+
+# Set the stack of your app to container.
+heroku stack:set container
+
+# Deploy your application:
+git push heroku master
 ```
