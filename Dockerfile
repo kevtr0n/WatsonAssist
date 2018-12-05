@@ -19,7 +19,7 @@ COPY . .
 RUN npm run build
 
 # Serve dist folder
-CMD ["http-server", "dist"]  
+CMD ["npm", "run", "start"]  
 
 # Build stage
 # FROM node:9.11.1-alpine as build-stage
