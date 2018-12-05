@@ -124,8 +124,8 @@ export const store = new Vuex.Store({
      * @param context   the current state of the Vuex store.
      */
     analyze: (context) => {
-      var url = "https://watson-assist.herokuapp.com/analyze";
-      // var url = "http://localhost:5000/analyze"
+      var url = "https://watson-assist.herokuapp.com/analyze"; // URL for production.
+      // var url = "http://localhost:5000/analyze"             // URL for development.
       var data = { message: context.state.message };
 
       console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data, null, 2)}`);
