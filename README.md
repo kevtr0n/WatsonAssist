@@ -21,7 +21,7 @@ ___
 
 ## **Project Architecture**
 
-![Framework](./diagram.png)
+![Framework](./src/assets/diagram.png)
 
 ## **Project Setup**
 
@@ -83,7 +83,7 @@ ___
 * Create your own service **[here](https://www.ibm.com/watson/services/tone-analyzer/)** (**the lite plan is all that is needed**).
 * Copy your service's API Key and URL (**you will need them later**).
 
-![Tone Analyzer Service](./tone-analyzer.png)
+![Tone Analyzer Service](./src/assets/tone-analyzer.png)
 
 ___
 
@@ -148,7 +148,7 @@ docker run -it -p 8080:80 --rm --name INSTANCE_NAME IMAGE_NAME
 
 Under the settings tab in your Heroku project you will need to click the button titled 'Reveal Config Vars'
 
-![Reveal Config Vars](./button.png)
+![Reveal Config Vars](./src/assets/button.png)
 
 Once there, you will need to add your three environment variables:
 
@@ -158,7 +158,7 @@ TONE_ANALYZER_API_URL=YOUR_TONE_ANALYZER_API_URL
 TONE_ANALYZER_VERSION_DATE=2017-09-21
 ```
 
-![Config Vars](./vars.png)
+![Config Vars](./src/assets/vars.png)
 
 **Time to deploy!**
 
