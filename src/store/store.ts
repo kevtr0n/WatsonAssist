@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
     isAnger:          false,
     isFear:           false,
     isJoy:            false,
+    isLoading:        false,
     analytical:       0.0,
     confident:        0.0,
     tentative:        0.0,
@@ -26,7 +27,7 @@ export const store = new Vuex.Store({
     joy:              0.0,
     message:          "",
     sentences:        [],
-    seen:             false
+    seen:             false,
   },
 
   /**
@@ -40,6 +41,7 @@ export const store = new Vuex.Store({
     getIsAnger:         (state) => { return state.isAnger; },
     getIsFear:          (state) => { return state.isFear; },
     getIsJoy:           (state) => { return state.isJoy; },
+    getIsLoading:       (state) => { return state.isLoading; },
     getAnalytical:      (state) => { return state.analytical; },
     getConfident:       (state) => { return state.confident; },
     getTentative:       (state) => { return state.tentative; },
@@ -49,7 +51,7 @@ export const store = new Vuex.Store({
     getJoy:             (state) => { return state.joy; },
     getMessage:         (state) => { return state.message; },
     getSentences:       (state) => { return state.sentences; },
-    getSeen:            (state) => { return state.seen; }
+    getSeen:            (state) => { return state.seen; },
   },
 
   /**
@@ -63,6 +65,7 @@ export const store = new Vuex.Store({
     setIsAnger:         (state, payload) => { state.isAnger = payload; },
     setIsFear:          (state, payload) => { state.isFear = payload; },
     setIsJoy:           (state, payload) => { state.isJoy = payload; },
+    setIsLoading:       (state, payload) => { state.isLoading = payload; },
     setAnalytical:      (state, payload) => { state.analytical = payload; },
     setConfident:       (state, payload) => { state.confident = payload; },
     setTentative:       (state, payload) => { state.tentative = payload; },
@@ -83,12 +86,23 @@ export const store = new Vuex.Store({
     /**
      * Sets the message state.
      * 
-     * @param context   the current state of the Vuex store.
+     * @param commit    the commit method to update state.
      * @param payload   the payload containing the data.
      */
-    setMessage: (context, payload) => { 
-      console.log(`Action:\tsetMessage\nMessage:\t${payload}`)
-      context.commit('setMessage', payload)
+    setMessage: ({commit}, payload) => { 
+      console.log(`Action:\tsetMessage\nMessage:\t${payload}`);
+      commit('setMessage', payload);
+    },
+    
+    /**
+     * Sets the loading state.
+     * 
+     * @param commit    the commit method to update state.
+     * @param payload   the payload containing the data.
+     */
+    setIsLoading: ({commit}, payload) => {
+      console.log(`Actions:\tsetIsLoading\nMessage:\t${payload}`);
+      commit('setIsLoading', payload);
     },
 
     /**
@@ -124,6 +138,7 @@ export const store = new Vuex.Store({
      * @param context   the current state of the Vuex store.
      */
     analyze: (context) => {
+      context.commit('setIsLoading', true);
       var url = "https://watson-assist.herokuapp.com/analyze"; // URL for production.
       // var url = "http://localhost:5000/analyze"             // URL for development.
       var data = { message: context.state.message };
@@ -172,6 +187,8 @@ export const store = new Vuex.Store({
         dispatch('setSentenceTones', payload.sentences_tone);
         dispatch('setSeen', true);
       }
+
+      dispatch('setIsLoading', false);
     },
 
     /**

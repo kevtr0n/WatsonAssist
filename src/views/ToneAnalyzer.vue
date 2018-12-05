@@ -7,35 +7,19 @@
           <p>Enter Text To Be Analyzed</p>
         </div>
 
-        <!-- <div id="div--examples">
-          <ul class="radio-list">
-            <li>
-              <input type="radio" id="personal" value="personal" v-model="picked">
-              <label for="personal">Personal</label>
-            </li>
-            <li>
-              <input type="radio" id="email" value="email" v-model="picked">
-              <label for="email">Angry Email</label>
-            </li>
-            <li>
-
-            </li>
-            <li>
-
-            </li>
-            <li>
-
-            </li>
-          </ul>
-        </div> -->
-
         <div id="div--textarea">
           <textarea class="input box" v-model="message" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Happiness is the key towards leading a happy life. Happiness has no common definition and meaning that is accepted by all."/>
         </div>
 
-        <div id="div--button">
+        <div v-if="getIsLoading" id="div--loading">
+          <div class="hexagon">
+            <hexagon></hexagon>
+          </div>
+        </div>
+        <div v-else id="div--button">
           <button class="button-style" @click="analyze(message)"><span>Submit</span></button>
         </div>
+
       </div>
 
       <div class="card" id="div--results-form">
@@ -167,9 +151,14 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { Hexagon } from 'vue-loading-spinner';
 export default {
 
   name: 'WatsonAssist',
+
+  components: {
+    Hexagon
+  },
 
   methods: {
 
@@ -198,6 +187,7 @@ export default {
       'getIsAnger',
       'getIsFear',
       'getIsJoy',
+      'getIsLoading',
       'getAnalytical',
       'getConfident',
       'getTentative',
@@ -302,6 +292,25 @@ export default {
       transform: scale(1.005, 1.005);
     }
 
+  }
+
+  #div--loading {
+    width: 70%;
+    align-self: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+    position: relative;
+
+    border: 1px solid #42b983;
+    box-shadow: 0 0 15px #719ECE;
+
+    div {
+      padding: 2px;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   #div--button {
