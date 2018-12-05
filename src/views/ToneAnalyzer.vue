@@ -299,15 +299,13 @@ export default {
     align-self: center;
     margin-bottom: 15px;
     transition: all 0.3s ease-in-out;
-    border-radius: 3px;
     position: relative;
 
     border: 1px solid #42b983;
     box-shadow: 0 0 15px #719ECE;
 
     div {
-      padding: 2px;
-      margin: auto;
+      margin: 3px auto 2px auto;
       width: 100%;
       height: 100%;
     }
