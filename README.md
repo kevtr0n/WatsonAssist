@@ -2,7 +2,7 @@
 
 > Watson Assist is a state of the art web application that uses IBM Watson's linguistics analysis to detect fear, angry, joyous, sad, analytical, confident, and tentative tones that may be found in text. This service can be useful for writing a sales pitch or emails that convey a desired tone.
 
-![IBM's Watson](./watson_md.png)
+![IBM's Watson](./src/assets/watson_md.png)
 
 A working version of this application can be found **[here](https://watson-assist.herokuapp.com)**
 
@@ -25,7 +25,7 @@ ___
 
 ## **Project Setup**
 
->The following instructions are for Mac OS. 
+>The following instructions are for Mac OS.
 >Project setup for Windows and Linux are unavailable.
 
 ___
