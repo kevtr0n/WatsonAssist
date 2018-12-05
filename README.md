@@ -10,12 +10,13 @@ ___
 
 ## **Tools Used**
 
-* **[Watson's Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer/)**
-* **[IBM Cloud Platform](https://www.ibm.com/cloud/)**
-* **[Heroku Cloud Platform](https://www.heroku.com/)**
-* **[Node Package Manager](https://www.npmjs.com/)**
-* **[Node JS](https://nodejs.org/en/)**
-* **[Vue JS](https://vuejs.org/)**
+* **[Watson's Tone Analyzer](https://www.ibm.com/watson/services/tone-analyzer/)** - This application is built on using the Tone Analyzation capabilities of IBM's Watson.
+* **[IBM Cloud Platform](https://www.ibm.com/cloud/)** - This Watson Tone Analyzer service is provided by the IBM Cloud platform.
+* **[Heroku Cloud Platform](https://www.heroku.com/)** - Heroku is the cloud platform I have chosen to deploy this project on.
+* **[Node Package Manager](https://www.npmjs.com/)** - For installing and importing packages I have chosen NPM instead of Yarn.
+* **[Node JS](https://nodejs.org/en/)** - This project uses a Node runtime.
+* **[Vue JS](https://vuejs.org/)** - Vue JS is the JavaScript framework used for the project's frontend.
+* **[Docker](https://www.docker.com/)** - To serve this project locally using a Docker image you must install Docker tools.
 
 ___
 
@@ -74,6 +75,15 @@ npm install -g vue
 # Check to see if Vue installed properly:
 vue --version
 ```
+
+**Install Docker**
+
+``` bash
+# Install using brew cask
+brew cask install docker
+```
+
+(Or alternatively you can install from **[here](https://store.docker.com/editions/community/docker-ce-desktop-mac)**.)
 
 ___
 
