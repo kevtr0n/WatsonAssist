@@ -173,8 +173,11 @@ export default {
     analyze(message) {
       this.$store.dispatch('clear');
       this.$store.dispatch('setMessage', message)
-      this.$store.dispatch('analyze');
-      console.log(this.$store.state.sentences);
+      if (message != "") {
+        this.$store.dispatch('analyze');
+      } else {
+        console.log("Error:\tPlease enter text into the text box.");
+      }
     }
   },
 
