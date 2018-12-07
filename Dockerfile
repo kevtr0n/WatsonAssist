@@ -1,7 +1,7 @@
 FROM node:9.11.1-alpine
 
-# Install node package http-server
-RUN npm install -g http-server
+# # Install node package http-server
+# RUN npm install -g http-server
 
 # Make current directory the project root
 WORKDIR /app
