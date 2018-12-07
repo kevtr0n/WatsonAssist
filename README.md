@@ -22,7 +22,15 @@ ___
 
 ## **Project Architecture**
 
+> Network Model
+
 ![Framework](./src/assets/diagram.png)
+
+> Deployment Model
+
+![Deployment](./src/assets/deployment.png)
+
+___
 
 ## **Project Setup**
 
@@ -184,6 +192,8 @@ TONE_ANALYZER_VERSION_DATE=2017-09-21
 ```
 
 ![Config Vars](./src/assets/vars.png)
+
+___
 
 ### Deploy
 
