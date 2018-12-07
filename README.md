@@ -33,7 +33,7 @@ ___
 
 ## **Install Dependencies**
 
-___
+> These are the intructions for installing any dependencies needed to test, develop, and deploy.
 
 ### Install Node and NPM
 
@@ -111,7 +111,9 @@ ___
 git clone https://github.com/kevtr0n/WatsonAssist.git
 ```
 
-## Create a ```.env``` file in the project root:
+___
+
+## Create a ```.env``` file in the project root
 
 ``` bash
 # Change into the project directory:
@@ -121,7 +123,9 @@ cd WatsonAssist
 touch .env
 ```
 
-## Inside the ```.env``` file, do the following:
+___
+
+## Inside the ```.env``` file, do the following
 
 ``` bash
 # Create the following variables:
@@ -130,11 +134,15 @@ TONE_ANALYZER_API_URL=YOUR_TONE_ANALYZER_API_URL
 TONE_ANALYZER_VERSION_DATE=2017-09-21
 ```
 
+___
+
 ## Serve Locally (with hot-reload/without backend connectivity)
 
 ``` bash
 npm run serve
 ```
+
+___
 
 ## Serve Locally (without hot-reload/with backend connectivity)
 
@@ -145,6 +153,8 @@ npm run build
 node server.js
 ```
 
+___
+
 ## Build Docker Image and Serve Locally
 
 ``` bash
@@ -154,6 +164,8 @@ docker build -t IMAGE_NAME .
 # Serve Docker image on port 8080
 docker run -it -p 8080:80 --rm --name INSTANCE_NAME IMAGE_NAME
 ```
+
+___
 
 ## Deploy to Heroku
 
@@ -172,8 +184,6 @@ TONE_ANALYZER_VERSION_DATE=2017-09-21
 ```
 
 ![Config Vars](./src/assets/vars.png)
-
-> Be sure that **line 127** of ```WatsonAssist/src/store/store.ts``` is uncommented and **line 128** is commented out for production.
 
 ### Deploy
 
@@ -215,3 +225,5 @@ heroku stack:set container
 # Deploy your application:
 git push heroku master
 ```
+
+___

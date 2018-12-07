@@ -7,7 +7,7 @@ require('dotenv').load();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(cors);
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -15,7 +15,8 @@ app.use((req, res, next) => {
 });
 
 /**
- * 
+ * Sends a HTTP POST request to IBM Watson's
+ * Tone Analyzer Cloud service.
  */
 app.post('/analyze', (req, res) => {
 
@@ -28,9 +29,6 @@ app.post('/analyze', (req, res) => {
     'iam_apikey': process.env.TONE_ANALYZER_API_KEY,
     'url': process.env.TONE_ANALYZER_API_URL,
     'version': process.env.TONE_ANALYZER_VERSION_DATE
-    // 'iam_apikey': 'Ggjp3Y1eJPuO1PlZVdc-Nt_hfHoW-k23a_WsWn9_6xSn',
-    // 'url': 'https://gateway.watsonplatform.net/tone-analyzer/api',
-    // 'version': '2017-09-21'
   });
 
   var toneParams = {

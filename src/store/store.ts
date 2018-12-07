@@ -139,8 +139,7 @@ export const store = new Vuex.Store({
      */
     analyze: (context) => {
       context.commit('setIsLoading', true);
-      var url = "https://watson-assist.herokuapp.com/analyze"; // URL for production.
-      // var url = "http://localhost:5000/analyze"             // URL for development.
+      var url = "https://watson-assist.herokuapp.com/analyze"; 
       var data = { message: context.state.message };
 
       console.log(`Action:\tanalyze:\nEntrance:\t${JSON.stringify(data, null, 2)}`);
