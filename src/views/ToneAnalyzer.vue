@@ -235,7 +235,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import url("../../node_modules/carbon-components/css/carbon-components.min.css");
 @import url("../style/style.scss");
 
 #div--mainbox{
