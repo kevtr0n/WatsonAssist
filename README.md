@@ -20,6 +20,27 @@ ___
 
 ___
 
+### **Node Packages Used**
+
+* **[body-parser](https://www.npmjs.com/package/body-parser)**
+* **[carbon-components](https://www.npmjs.com/package/carbon-components)**
+* **[cors](https://www.npmjs.com/package/cors)**
+* **[cors-server](https://www.npmjs.com/package/cors-server)**
+* **[dotenv](https://www.npmjs.com/package/dotenv)**
+* **[express](https://www.npmjs.com/package/express)**
+* **[nprogress](https://www.npmjs.com/package/nprogress)**
+* **[watson-developer-cloud](https://www.npmjs.com/package/watson-developer-cloud)**
+
+#### Installed via Vue CLI project scaffolding
+
+* **[register-service-worker](https://www.npmjs.com/package/register-service-worker)**
+* **[vue](https://www.npmjs.com/package/vue)**
+* **[vue-router](https://www.npmjs.com/package/vue-router)**
+* **[vue-loading-spinner](https://www.npmjs.com/package/vue-loading-spinner)**
+* **[vuex](https://www.npmjs.com/package/vuex)**
+
+___
+
 ## **Project Architecture**
 
 > Network Model
